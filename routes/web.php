@@ -20,14 +20,13 @@ use App\Http\Controllers\SectionController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Auth::routes();
 Route::middleware('auth')->prefix('erp/')->group(function(){
     Route::get('', [HomeController::class, 'index'])->name('home');
     Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices');
     Route::get('section',[SectionController::class,'index'])->name('sections');
     Route::post('section/store',[SectionController::class,'store'])->name('section.store');
-    Route::post('section/update/{id}',[SectionController::class,'update'])->name('section.update');
+    Route::get('section/edit/{section}',[SectionController::class,'edit'])->name('section.edit');
+    Route::post('section/update/{section}',[SectionController::class,'update'])->name('section.update');
 });
