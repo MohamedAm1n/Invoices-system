@@ -11,13 +11,15 @@
                     الأقسام</span>
             </div>
         </div>
+        
     </div>
+    <x-flash-message/>
     <!-- breadcrumb -->
 @endsection
 @section('content')
     <!-- row -->
     <div class="row">
-        <x-flash-message />
+        {{-- <x-flash-message /> --}}
 
         <div class="col-xl-12">
 
@@ -32,17 +34,17 @@
                             <i class="mdi mdi-dots-horizontal text-gray"></i>
                         </div>
                     </div>
-                    <div class="card-body">
+
+                    <table class="table table-bordered" style="text-align:center">
                         <div class="table-responsive">
-                            <table id="example1" class="table key-buttons text-md-nowrap">
-                                <thead>
+                                <thead >
                                     <tr>
-                                        <th class="border-bottom-0">م</th>
-                                        <th class="border-bottom-0">أسم القسم</th>
-                                        <th class="border-bottom-0">الوصف </th>
-                                        <th class="border-bottom-0">منشئ القسم </th>
-                                        <th class="border-bottom-0">تاريخ الانشاء </th>
-                                        <th class="border-bottom-0">العمليات </th>
+                                        <th style="text-align:center">م</th>
+                                        <th style="text-align:center">أسم القسم</th>
+                                        <th style="text-align:center">الوصف </th>
+                                        <th style="text-align:center">منشئ القسم </th>
+                                        <th style="text-align:center">تاريخ الانشاء </th>
+                                        <th style="text-align:center">العمليات </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,10 +59,19 @@
                                             <td>{{ $section->created_by }}</td>
                                             <td>{{ $section->created_at }}</td>
                                             <td>
-                                                <a class=" btn btn-m btn-info" 
-                                                    href="{{ route('section.edit',$section->id) }}" title="{{ $section->id }}"><i class="las la-pen"></i></a>
-                                                <a class="btn btn-m btn-danger" data-effect="effect-scale"
-                                                    href="" title="حذف"><i class="las la-trash"></i></a>
+                                                <div class="modal-footer">
+                                                <button type="button" title="تعديل القسم" class="btn.btn-lg btn-outline-primary">
+                                                    <a href="{{ route('section.edit',$section->id) }}">
+                                                        <i class="las la-edit"></i>
+                                                    </a>
+                                                </button>
+                                                <form action="{{ route('section.delete', $section->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" title="حذف القسم" class="btn.btn-lg btn-outline-danger">
+                                                            <i class="las la-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                    </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -98,7 +109,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn ripple btn-success" type="submit">تأكيد الاضافة</button>
-                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">إغلاق</button>
+                            <button class="btn ripple btn-info" data-dismiss="modal" type="button"><a href="{{ route('sections') }}">رجوع</a></button>
                         </div>
                     </form>
                 </div>

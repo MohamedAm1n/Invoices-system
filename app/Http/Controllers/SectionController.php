@@ -111,17 +111,18 @@ class SectionController extends Controller
         // dd($edit_section);
         // $section = Section::find($id);
         $section->update($edit_section);
-        return redirect('erp/section');
+        return redirect('erp/section')->with('message',"تم التعديل بنجاح");
         }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Section  $section
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function destroy(Section $section)
     {
-        //
+        $section->delete();
+        return redirect('erp/section')->with('message',"تم حذف القسم");
     }
 }
