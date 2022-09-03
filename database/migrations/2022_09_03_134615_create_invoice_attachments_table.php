@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('invoice_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->string('product_name');
-            $table->text('product_description');
+            $table->foreignId('invoice_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('file_name');
+            $table->string('invoice_number');
+            $table->string('created_by');
+            
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('invoice_attachments');
     }
 };

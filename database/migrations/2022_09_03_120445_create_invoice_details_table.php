@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained()
+            $table->foreignId('invoice_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->string('product_name');
-            $table->text('product_description');
+            $table->string('invoice_number');
+            $table->string('product');
+            $table->string('section');
+            $table->string('status');
+            $table->string('invoice_created_by');
+            $table->integer('status_value');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('invoice_details');
     }
 };

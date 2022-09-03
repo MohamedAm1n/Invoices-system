@@ -13,11 +13,11 @@
 						<div class="card">
 						<div class="card mg-b-20">
 							<div class="card-header pb-0">
-								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">Bordered Table</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
-								</div>
-								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
+								<a href="{{ route('invoices.create') }}">
+                            <button type="button" title="تعديل القسم" class="btn.btn-lg btn-outline-primary">
+                                    إضافة فاتورة
+                                </button>
+                            </a>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">

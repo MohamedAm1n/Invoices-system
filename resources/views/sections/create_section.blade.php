@@ -19,10 +19,7 @@
 @section('content')
     <!-- row -->
     <div class="row">
-        {{-- <x-flash-message /> --}}
-
         <div class="col-xl-12">
-
             <div class="card">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">

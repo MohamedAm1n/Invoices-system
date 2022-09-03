@@ -1,6 +1,4 @@
-<!-- Footer opened -->
-<div class="main-footer ht-40">
-    <div class="container-fluid pd-t-0-f ht-100p">
+
         <!-- Back-to-top -->
         <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
         <!-- JQuery min js -->
@@ -45,7 +43,6 @@
         <script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
         <!--Internal  Datatable js -->
-        <script src="{{ asset('assets/js/table-data.js') }}"></script>
         <!-- Sticky js -->
         <script src="{{ asset('assets/js/sticky.js') }}"></script>
         <!-- custom js -->
@@ -72,6 +69,18 @@
         <!--Internal  index js -->
         <script src="{{ asset('assets/js/index.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
+        <!--Internal  Datatable js -->
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
+    <!-- Internal Prism js-->
+    <script src="{{asset('assets/plugins/prism/prism.js')}}"></script>
+
+@yield('js')
+        <!-- Footer opened -->
+<div class="main-footer ht-40">
+    <div class="container-fluid pd-t-0-f ht-100p">
+        copyrights
     </div>
 </div>
 <!-- Footer closed -->
+</body>
+</html>
