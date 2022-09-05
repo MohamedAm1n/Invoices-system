@@ -23,6 +23,7 @@ use App\Http\Controllers\ProductController;
 
 Auth::routes();
 Route::get('', [HomeController::class, 'index'])->name('home');
+
 Route::middleware('auth')->prefix('erp/')->group(function(){
 
     Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices');

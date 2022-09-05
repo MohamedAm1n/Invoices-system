@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\Invoice;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -26,8 +27,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $statuses = Status::all();
         $sections = Section::all();
-        return view('invoices.add_invoices',['sections'=>$sections]);
+        return view('invoices.add_invoices',['sections'=>$sections,'statuses'=>$statuses]);
     }
 
     /**
@@ -39,19 +41,21 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $val = $request->validate([
-            'section_id',
-            'invoice_number',
-            'invoice_date',
-            'due_date',
-            'product',
-    'amount_collection',
-    'amount_commission',
-    'discount','value_vat',
-    'rate_vat',
-    'total',
-    'status',
-
+            'section_id'=>'required',
+            'invoice_number'=>'required',
+            'invoice_date'=>'required',
+            'due_date'=>'required',
+            'product_id'=>'required',
+            'amount_collection'=>'required',
+            'amount_commission'=>'required',
+            'discount'=>'required',
+            'value_vat'=>'required',
+            'rate_vat'=>'required',
+            'total'=>'required',
+            'status_id'=>'required',
         ]);
+        $val['created_by'] = auth()->user()->name;
+        dd($val);
         if (!$val)
             return redirect(route('invoices.create'))->with('message');
         else
@@ -106,7 +110,8 @@ class InvoiceController extends Controller
     public function getProducts($id)
     {
         $products = DB::table('products')->where('section_id',$id)->pluck('product_name','id');
-       
         return json_encode($products);
     }
+
+
 }

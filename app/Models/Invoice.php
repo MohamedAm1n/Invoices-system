@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
-    protected $fillable = ['section_id','invoice_number','invoice_date','due_date','product',
-    'amount_collection','amount_commission','discount','value_vat','rate_vat','total','value_status',
-'notes','payment_date',
+    protected $fillable = ['section_id','invoice_number','invoice_date',
+    'due_date','product_id','amount_collection','amount_commission',
+    'discount','value_vat','rate_vat','total','status_id',
+    'notes','payment_date','created_by'
 ];
 protected $dates=['deleted_at'];
+	/**
+	 * @return mixed
+	 */
+
 }

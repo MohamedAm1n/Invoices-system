@@ -44,6 +44,7 @@ class ProductController extends Controller
             'product_description'=>'required|string',
             'section_id'=>'required'
         ]);
+        $check['created_by'] = auth()->user()->name;
             if(!$check)
                 return redirect(route('products'))->with('message');
         else

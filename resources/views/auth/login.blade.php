@@ -56,9 +56,14 @@
                                                                 <label class="form-check-label" for="remember">
                                                                         {{ __('تذكرني') }}
                                                                 </label>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <label class="form-check-label">
+                                                                    <a href="{{ route('register') }}">{{ __('إنشاء حساب') }}</a>    
+                                                                </label>
                                                         </div>
                                                     </div>
                                                 </div>
+												
 											</div>
                                                     <button type="submit" class="btn btn-main-primary btn-block">
                                                     {{ __('تسجيل الدخول') }}
