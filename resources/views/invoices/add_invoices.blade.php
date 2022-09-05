@@ -125,7 +125,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="exampleTextarea">ملاحظات</label>
-                                <textarea class="form-control" id="exampleTextarea" name="note" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleTextarea" name="notes" rows="3"></textarea>
                             </div>
                         </div>
                         <br>

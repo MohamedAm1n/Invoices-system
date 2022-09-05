@@ -10,11 +10,12 @@ class InvoiceController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('invoices.invoices');
+        $invoices = Invoice::all();
+        return view('invoices.invoices',['invoices'=>$invoices]);
     }
     /**
      * Show the form for creating a new resource.
@@ -41,14 +42,15 @@ class InvoiceController extends Controller
             'product_id'=>'required',
             'status_id'=>'required',
             'invoice_number'=>'required',
-            'invoice_date'=>'required',
-            'due_date'=>'required',
+            'invoice_date'=>'required|date',
+            'due_date'=>'required|date',
             'amount_collection'=>'required',
             'amount_commission'=>'required',
             'discount'=>'required',
             'value_vat'=>'required',
             'rate_vat'=>'required',
             'total'=>'required',
+            'notes'=>'string'
         ]);
         // $val = $request->all();
         $val['created_by'] = auth()->user()->name;

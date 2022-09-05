@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InvoiceDetail;
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 
-class InvoiceDetailController extends Controller
+class AttachmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class InvoiceDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\InvoiceDetail  $invoiceDetail
+     * @param  \App\Models\Attachment  $attachment
      * @return \Illuminate\Http\Response
      */
-    public function show(InvoiceDetail $invoiceDetail)
+    public function show(Attachment $attachment)
     {
         //
     }
@@ -52,10 +52,10 @@ class InvoiceDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\InvoiceDetail  $invoiceDetail
+     * @param  \App\Models\Attachment  $attachment
      * @return \Illuminate\Http\Response
      */
-    public function edit(InvoiceDetail $invoiceDetail)
+    public function edit(Attachment $attachment)
     {
         //
     }
@@ -64,10 +64,10 @@ class InvoiceDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\InvoiceDetail  $invoiceDetail
+     * @param  \App\Models\Attachment  $attachment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InvoiceDetail $invoiceDetail)
+    public function update(Request $request, Attachment $attachment)
     {
         //
     }
@@ -75,10 +75,10 @@ class InvoiceDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\InvoiceDetail  $invoiceDetail
+     * @param  \App\Models\Attachment  $attachment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InvoiceDetail $invoiceDetail)
+    public function destroy(Attachment $attachment)
     {
         //
     }
