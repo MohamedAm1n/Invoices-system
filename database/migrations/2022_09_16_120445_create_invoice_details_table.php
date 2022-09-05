@@ -16,15 +16,6 @@ return new class extends Migration
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('status_id')->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('section_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->text('note')->nullable();
