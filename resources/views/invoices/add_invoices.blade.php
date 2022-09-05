@@ -3,10 +3,10 @@
     اضافة فاتورة
 @stop
 @section('cs')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
         rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> --}}
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -39,20 +39,14 @@
                             </div>
                             <div class="col">
                                 <label>تاريخ الفاتورة</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input id='datepicker' required name="invoice_Date" type="text" class="form-control">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
+                                <div class="input-group date" >
+                                    <input value="dd/mm/yyyy" required name="invoice_date" type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
                                 <label>تاريخ الاستحقاق</label>
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input id='datepicker' value="yy-mm-dd" name="payment_date" type="text" class="form-control">
-                                    <div class="input-group-addon">
-                                        <span value="yy-mm-dd" class="glyphicon glyphicon-th"></span>
-                                    </div>
+                                    <input   name="due_date" type="date" value="dd/mm/yyyy" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -81,7 +75,7 @@
                             </div>
                             <div class="col">
                                 <label for="inputName" class="control-label">حالة الفاتورة</label>
-                                <select name="status" placeholder="حالة الفاتورة" class="form-control SlectBox">
+                                <select name="status_id" placeholder="حالة الفاتورة" class="form-control SlectBox">
                                     <!--placeholder-->
                                     <option value="" selected disabled>حدد حالة الفاتورة</option>
                                     @foreach ($statuses as $status)
@@ -135,16 +129,16 @@
                             </div>
                         </div>
                         <br>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col">
                                 <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                 <h5 class="card-title">المرفقات</h5>
                             </div>
                             <div class="col-sm-12 col-md-12">
-                                <input type="file" name="pic" class="dropify"
+                                <input type="file" name="" class="dropify"
                                     accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70">
                             </div><br>
-                        </div>
+                        </div> --}}
                         <br>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">حفظ البيانات</button>
@@ -207,14 +201,17 @@
     <script>
         $('.dropify').dropify();
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/4.7.14/js/bootstrap-datepicker.min.js">
-    </script>
+    </script> --}}
     <script type="text/javascript">
-        $(function() {
-            $('#datepicker').datepicker("span", "dateFormat", $(this).val());
-        });
+        // $(function() {
+        //     $('#datepicker').datepicker("input", "dateFormat", $(this).val());
+        // });
+    //     $( "#datepicker" ).datepicker({
+    //   format: 'dd/mm/yyyy'
+    // });
     </script>
 @endsection

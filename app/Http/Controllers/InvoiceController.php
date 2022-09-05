@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Status;
 use App\Models\Invoice;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class InvoiceController extends Controller
 {
     /**
@@ -19,7 +16,6 @@ class InvoiceController extends Controller
     {
         return view('invoices.invoices');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +27,6 @@ class InvoiceController extends Controller
         $sections = Section::all();
         return view('invoices.add_invoices',['sections'=>$sections,'statuses'=>$statuses]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,29 +35,29 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $val = $request->validate([
             'section_id'=>'required',
+            'product_id'=>'required',
+            'status_id'=>'required',
             'invoice_number'=>'required',
             'invoice_date'=>'required',
             'due_date'=>'required',
-            'product_id'=>'required',
             'amount_collection'=>'required',
             'amount_commission'=>'required',
             'discount'=>'required',
             'value_vat'=>'required',
             'rate_vat'=>'required',
             'total'=>'required',
-            'status_id'=>'required',
         ]);
+        // $val = $request->all();
         $val['created_by'] = auth()->user()->name;
-        dd($val);
         if (!$val)
             return redirect(route('invoices.create'))->with('message');
         else
             Invoice::create($val);
             return redirect(route('invoices'))->with('message','تم إضافة الفاتورة بنجاح');
     }
-
     /**
      * Display the specified resource.
      *
@@ -73,7 +68,6 @@ class InvoiceController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,7 +78,6 @@ class InvoiceController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -96,7 +89,6 @@ class InvoiceController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -112,6 +104,4 @@ class InvoiceController extends Controller
         $products = DB::table('products')->where('section_id',$id)->pluck('product_name','id');
         return json_encode($products);
     }
-
-
 }
