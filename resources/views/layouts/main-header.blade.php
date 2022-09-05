@@ -254,7 +254,13 @@
 										<div class="d-flex wd-100p">
 											<div class="main-img-user"><img alt="" src="{{asset('assets/img/faces/6.jpg')}}" class=""></div>
 											<div class="mr-3 my-auto">
+												@if (auth())
+												
 												<h6>{{ auth()->user()->name }}</h6><span>Premium Member</span>
+												@else
+												<h6>Welcome</h6><span>Premium Member</span>
+													
+												@endif
 											</div>
 										</div>
 									</div>

@@ -14,7 +14,7 @@
 						<div class="card mg-b-20">
 							<div class="card-header pb-0">
 								<a href="{{ route('invoices.create') }}">
-                            <button type="button" title="تعديل القسم" class="btn.btn-lg btn-outline-primary">
+                            <button type="button" class="btn.btn-lg btn-outline-primary">
                                     إضافة فاتورة
                                 </button>
                             </a>

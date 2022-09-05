@@ -22,16 +22,12 @@ use App\Http\Controllers\ProductController;
 
 
 Auth::routes();
+Route::get('', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->prefix('erp/')->group(function(){
-    Route::get('', [HomeController::class, 'index'])->name('home');
-    //  Invoice Routes
-    // Route::get('invoices/section/{id}',function($id){
-    //      $products = DB::table('products')->where('section_id',$id)->pluck('product_name','id');
-    //     dd($products);
-    // })->name('invoices.section');
 
     Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices');
     Route::get('invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+    Route::post('invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
     Route::get('invoices/section/{id}', [InvoiceController::class, 'getProducts'])->name('invoices.section');
     // Section Routes
     Route::get('section',[SectionController::class,'index'])->name('sections');

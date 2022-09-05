@@ -2,7 +2,18 @@
 @section('title')
     اضافة فاتورة
 @stop
+@section('cs')
+      {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
+@endsection
 
 
 @section('page-header')
@@ -16,6 +27,7 @@
         </div>
     </div>
     <!-- breadcrumb -->
+    <x-flash-message/>
 @endsection
 @section('content')
 
@@ -25,7 +37,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="{{ route('invoices.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                         @csrf
                         {{-- 1 --}}
 
@@ -38,17 +50,27 @@
 
                             <div class="col">
                                 <label>تاريخ الفاتورة</label>
-                                <input class="form-control fc-datepicker" name="invoice_Date" placeholder="YYYY-MM-DD"
-                                    type="text" value="{{ date('Y-m-d') }}" required>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input id='datepicker' required name="invoice_Date" type="text" class="form-control">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col">
                                 <label>تاريخ الاستحقاق</label>
-                                <input class="form-control fc-datepicker" name="Due_date" placeholder="YYYY-MM-DD"
-                                    type="text" required>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input id='datepicker'  name="payment_date" type="text" class="form-control">
+                                    <div class="input-group-addon">
+                                        <span value="yy-mm-dd" class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
+
+
+                      
 
                         {{-- 2 --}}
                         <div class="row">
@@ -73,8 +95,18 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">مبلغ التحصيل</label>
-                                <input type="text" class="form-control" id="inputName" name="Amount_collection"
+                                <input type="text" class="form-control" id="amount_commission" name="amount_commission"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                            <div class="col">
+                                <label for="inputName" class="control-label">حالة الفاتورة</label>
+                                <select name="status" placeholder="حالة الفاتورة" class="form-control SlectBox" >
+                                    <!--placeholder-->
+                                    <option value="" selected disabled>حدد حالة الفاتورة</option>
+                                        <option value="1">مدفوعة  </option>
+                                        <option value="2"> غير مدفوعة </option>
+                                        <option value="3"> مؤجلة </option>
+                                </select>
                             </div>
                         </div>
 
@@ -85,15 +117,15 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">مبلغ العمولة</label>
-                                <input type="text" class="form-control form-control-lg" id="Amount_Commission"
-                                    name="Amount_Commission" title="يرجي ادخال مبلغ العمولة "
+                                <input type="text" class="form-control form-control-lg" id="amount_collection"
+                                    name="amount_collection" title="يرجي ادخال مبلغ العمولة "
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                     required>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الخصم</label>
-                                <input type="text" class="form-control form-control-lg" id="Discount" name="Discount"
+                                <input type="text" class="form-control form-control-lg" id="discount" name="discount"
                                     title="يرجي ادخال مبلغ الخصم "
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                     value=0 required>
@@ -101,7 +133,7 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">نسبة ضريبة القيمة المضافة</label>
-                                <select name="Rate_VAT" id="Rate_VAT" class="form-control" onchange="myFunction()">
+                                <select name="rate_vat" id="rate_vat" class="form-control" onchange="myFunction()">
                                     <!--placeholder-->
                                     <option value="" selected disabled>حدد نسبة الضريبة</option>
                                     <option value=" 5%">5%</option>
@@ -116,12 +148,12 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">قيمة ضريبة القيمة المضافة</label>
-                                <input type="text" class="form-control" id="Value_VAT" name="Value_VAT" readonly>
+                                <input type="text" class="form-control" id="value_vat" name="value_vat" readonly>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
-                                <input type="text" class="form-control" id="Total" name="Total" readonly>
+                                <input type="text" class="form-control" id="total" name="total" readonly>
                             </div>
                         </div>
 
@@ -131,15 +163,21 @@
                                 <label for="exampleTextarea">ملاحظات</label>
                                 <textarea class="form-control" id="exampleTextarea" name="note" rows="3"></textarea>
                             </div>
-                        </div><br>
-
-                        <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
-                        <h5 class="card-title">المرفقات</h5>
-
-                        <div class="col-sm-12 col-md-12">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
+                                <h5 class="card-title">المرفقات</h5>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
                             <input type="file" name="pic" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                 data-height="70">
                         </div><br>
+                        </div>
+                        <br>
+
+                        
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">حفظ البيانات</button>
@@ -161,15 +199,6 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
-<script>
-    $('.dropify').dropify();
-</script>
-
-    <script>
-        var date = $('.fc-datepicker').datepicker({
-            dateFormat: 'yy-mm-dd'
-        }).val();
-    </script>
 
     <script>
         $(document).ready(function() {
@@ -195,13 +224,12 @@
         });
     </script>
 
-
     <script>
         function myFunction() {
-            var Amount_Commission = parseFloat(document.getElementById("Amount_Commission").value);
-            var Discount = parseFloat(document.getElementById("Discount").value);
-            var Rate_VAT = parseFloat(document.getElementById("Rate_VAT").value);
-            var Value_VAT = parseFloat(document.getElementById("Value_VAT").value);
+            var Amount_Commission = parseFloat(document.getElementById("amount_commission").value);
+            var Discount = parseFloat(document.getElementById("discount").value);
+            var Rate_VAT = parseFloat(document.getElementById("rate_vat").value);
+            var Value_VAT = parseFloat(document.getElementById("value_vat").value);
             var Amount_Commission2 = Amount_Commission - Discount;
             if (typeof Amount_Commission === 'undefined' || !Amount_Commission) {
                 alert('يرجي ادخال مبلغ العمولة ');
@@ -210,10 +238,23 @@
                 var intResults2 = parseFloat(intResults + Amount_Commission2);
                 sumq = parseFloat(intResults).toFixed(2);
                 sumt = parseFloat(intResults2).toFixed(2);
-                document.getElementById("Value_VAT").value = sumq;
-                document.getElementById("Total").value = sumt;
+                document.getElementById("value_vat").value = sumq;
+                document.getElementById("total").value = sumt;
             }
         }
+    </script>
+<script>
+    $('.dropify').dropify();
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/4.7.14/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+           $('#datepicker').datepicker( "span", "dateFormat", $( this ).val());
+        });
     </script>
 
 @endsection

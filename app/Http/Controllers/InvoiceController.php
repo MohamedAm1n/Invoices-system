@@ -34,11 +34,29 @@ class InvoiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'section_id',
+            'invoice_number',
+            'invoice_date',
+            'due_date',
+            'product',
+    'amount_collection',
+    'amount_commission',
+    'discount','value_vat',
+    'rate_vat',
+    'total',
+    'status',
+
+        ]);
+        if (!$val)
+            return redirect(route('invoices.create'))->with('message');
+        else
+            Invoice::create($val);
+            return redirect(route('invoices'))->with('message','تم إضافة الفاتورة بنجاح');
     }
 
     /**
