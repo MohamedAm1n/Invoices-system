@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('invoice_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('invoice_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('invoice_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('file_name');
-            $table->string('invoice_number');
-            $table->string('created_by');
-            
             $table->timestamps();
         });
     }

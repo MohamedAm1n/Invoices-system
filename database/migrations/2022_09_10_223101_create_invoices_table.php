@@ -16,21 +16,25 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('section_id')->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('status_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');    
             $table->string('invoice_number');
-            $table->date('invoice_date')->nullable();
+            $table->string('created_by');
             $table->string('due_date');
-            $table->string('product');
+            $table->string('discount');
+            $table->string('rate_vat');
+            $table->text('notes')->nullable();
             $table->decimal('amount_collection',8,2)->nullable();
             $table->decimal('amount_commission',8,2)->nullable();
-            $table->string('discount');
             $table->decimal('value_vat', 8, 2);
-            $table->string('rate_vat');
             $table->decimal('total', 8, 2);
-            $table->string('status',50);
-            $table->integer('value_status');
-            $table->text('notes')->nullable();
+            $table->date('invoice_date')->nullable();
             $table->date('payment_date')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -18,12 +18,15 @@ return new class extends Migration
             $table->foreignId('invoice_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->string('invoice_number');
-            $table->string('product');
-            $table->string('section');
-            $table->string('status');
-            $table->string('invoice_created_by');
-            $table->integer('status_value');
+            $table->foreignId('status_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('section_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->text('note')->nullable();
             $table->timestamps();
         });

@@ -19,6 +19,7 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('product_name');
+            $table->string('created_by');
             $table->text('product_description');
             $table->timestamps();
         });
