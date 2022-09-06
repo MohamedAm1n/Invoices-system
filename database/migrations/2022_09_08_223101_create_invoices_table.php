@@ -27,13 +27,12 @@ return new class extends Migration
             $table->string('discount');
             $table->string('rate_vat');
             $table->text('notes')->nullable();
-            $table->decimal('amount_collection',8,2)->nullable();
-            $table->decimal('amount_commission',8,2)->nullable();
-            $table->decimal('value_vat', 8, 2);
-            $table->decimal('total', 8, 2);
+            $table->decimal('amount_collection',12,2)->nullable();
+            $table->decimal('amount_commission',12,2)->nullable();
+            $table->decimal('value_vat', 12, 2);
+            $table->decimal('total', 12, 2);
             $table->date('due_date');
             $table->date('invoice_date')->nullable();
-            $table->date('payment_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

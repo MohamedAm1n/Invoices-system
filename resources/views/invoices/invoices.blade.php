@@ -52,7 +52,17 @@
 												<td style="text-align: center">{{ $invoice->rate_vat }}</td>
 												<td style="text-align: center">{{ $invoice->value_vat }}</td>
 												<td style="text-align: center">{{ $invoice->total }}</td>
-												<td style="text-align: center">{{ $invoice->status->status_value }}</td>
+												<td  style="text-align: center">
+													@if ($invoice->status->id == 1)
+														<span class="text-danger"> {{ $invoice->status->status_value }}</span>
+													@elseif($invoice->status->id == 2)
+														<span class="text-success"> {{ $invoice->status->status_value }}</span>
+													@elseif($invoice->status->id == 3)
+														<span class="text-warning"> {{ $invoice->status->status_value }}</span>
+													@else
+														<span class="text-warning"> {{ $invoice->status->status_value }}</span>
+													@endif
+												</td>
 												<td style="text-align: center">{{ $invoice->notes }}</td>
 											</tr>
 											@endforeach

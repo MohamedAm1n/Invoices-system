@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Status;
 use App\Models\Invoice;
 use App\Models\Section;
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class InvoiceController extends Controller
@@ -14,7 +15,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::with(['product','section','status'])->orderBy('id')->get();
         return view('invoices.invoices',['invoices'=>$invoices]);
     }
     /**
@@ -58,6 +59,14 @@ class InvoiceController extends Controller
             return redirect(route('invoices.create'))->with('message');
         else
             Invoice::create($val);
+            // attach files
+            if($request->hasFile('attach_name')){
+                $file['invoice_id'] = Invoice::latest()->first()->id;   
+                $file['attach_name']= $request->file('attach_name')->hashName();
+                $extension = $request->file('attach_name')->extension();
+                $file['attach_name']= $request->file('attach_name')->store('files/'. $extension, 'public');
+            Attachment::create($file);
+            }
             return redirect(route('invoices'))->with('message','تم إضافة الفاتورة بنجاح');
     }
     /**

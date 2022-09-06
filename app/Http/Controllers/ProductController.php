@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $sections = Section::all();
-        $products = Product::all();
+        $products = Product::with('section')->get();
         return view('products.products',['sections'=>$sections,'products'=>$products]);
     }
 

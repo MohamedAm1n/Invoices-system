@@ -27,7 +27,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('invoices.store') }}" method="post" enctype="multipart/form-data"
+                    <form action="{{ route('invoices.store') }}" method="post"  enctype="multipart/form-data"
                         autocomplete="off">
                         @csrf
                         {{-- 1 --}}
@@ -45,8 +45,8 @@
                             </div>
                             <div class="col">
                                 <label>تاريخ الاستحقاق</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input   name="due_date" type="date" value="dd/mm/yyyy" class="form-control">
+                                <div class="input-group date">
+                                    <input name="due_date" required type="date" value="dd/mm/yyyy" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -129,16 +129,15 @@
                             </div>
                         </div>
                         <br>
-                        {{-- <div class="row">
+                        <div class="row">
                             <div class="col">
                                 <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                 <h5 class="card-title">المرفقات</h5>
                             </div>
                             <div class="col-sm-12 col-md-12">
-                                <input type="file" name="" class="dropify"
-                                    accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="70">
+                                <input type="file" name="attach_name" class="form-control">
                             </div><br>
-                        </div> --}}
+                        </div>
                         <br>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">حفظ البيانات</button>
@@ -197,21 +196,5 @@
                 document.getElementById("total").value = sumt;
             }
         }
-    </script>
-    <script>
-        $('.dropify').dropify();
-    </script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/4.7.14/js/bootstrap-datepicker.min.js">
-    </script> --}}
-    <script type="text/javascript">
-        // $(function() {
-        //     $('#datepicker').datepicker("input", "dateFormat", $(this).val());
-        // });
-    //     $( "#datepicker" ).datepicker({
-    //   format: 'dd/mm/yyyy'
-    // });
     </script>
 @endsection
