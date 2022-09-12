@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Invoice;
 use App\Models\Section;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class SectionController extends Controller
 {
     /**
@@ -17,12 +15,10 @@ class SectionController extends Controller
     {
             $sections=Section::all();
             return view('sections.create_section',['sections'=>$sections]);
-    
         // return view('sections.create_section');
     }
 // public function all_invoices(Request $request)
 // {
-
 // }
     /**
      * Show the form for creating a new resource.
@@ -33,7 +29,6 @@ class SectionController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +37,6 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-
         $add_section = $request->validate([
             'section_name'=>'required|string|min:3|unique:sections',
             'description'=>'required|string',
@@ -52,17 +46,13 @@ class SectionController extends Controller
             'section_name.unique'=>'اسم القسم مسجل مسبقاً',
             'description.required'=>'برجاء ادخال الوصف الخاص بالقسم'
         ]
-        
         );
-            
             $add_section['created_by'] = auth()->user()->name;
-
             // dd($add_section);
         Section::create($add_section);
         return redirect(route('sections'))->with('message','تم إضافة القسم');
         // return back();
     }
-
     /**
      * Display the specified resource.
      *
@@ -73,7 +63,6 @@ class SectionController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,9 +72,7 @@ class SectionController extends Controller
     public function edit(Section $section)
     {
         return view('sections.edit_section',['section'=>$section]);
-
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -95,7 +82,6 @@ class SectionController extends Controller
      */
     public function update(Request $request,Section $section)
     {
-
         $edit_section = $request->validate([
             'section_name'=>'required|string|min:3|unique:sections,section_name,'.$section->id,
             'description'=>'required|string',
@@ -106,14 +92,12 @@ class SectionController extends Controller
             'description.required'=>'برجاء ادخال الوصف الخاص بالقسم'
         ]
     );
-        
     $edit_section['created_by'] = auth()->user()->name;
         // dd($edit_section);
         // $section = Section::find($id);
         $section->update($edit_section);
         return redirect('erp/section')->with('message',"تم التعديل بنجاح");
         }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -122,6 +106,11 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
+        $check = DB::table('invoices')->where('section_id', $section->id)->pluck('section_id')->first();
+        // dd($check);
+        if($section->id == $check)
+            return back()->with('error','لا يمكن حذف القسم لانه يوجد فواتير به');
+        else
         $section->delete();
         return redirect('erp/section')->with('message',"تم حذف القسم");
     }

@@ -4,6 +4,7 @@ use App\Models\Status;
 use App\Models\Invoice;
 use App\Models\Section;
 use App\Models\Attachment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class InvoiceController extends Controller
@@ -42,7 +43,7 @@ class InvoiceController extends Controller
             'section_id'=>'required',
             'product_id'=>'required',
             'status_id'=>'required',
-            'invoice_number'=>'required',
+            'invoice_number'=>'required|unique:invoices,invoice_number',
             'invoice_date'=>'required|date',
             'due_date'=>'required|date',
             'amount_collection'=>'required',
@@ -60,11 +61,11 @@ class InvoiceController extends Controller
         else
             Invoice::create($val);
             // attach files
-            if($request->hasFile('attach_name')){
+            if($request->hasFile('attach_name') && $request->file('attach_name')->isValid()){
                 $file['invoice_id'] = Invoice::latest()->first()->id;   
-                $file['attach_name']= $request->file('attach_name')->hashName();
+                $fileName= $request->file('attach_name')->getClientOriginalName();
                 $extension = $request->file('attach_name')->extension();
-                $file['attach_name']= $request->file('attach_name')->store('files/'. $extension, 'public');
+                $file['attach_name']= $request->file('attach_name')->storePubliclyAs('files/'. $extension,$fileName ,'public');
             Attachment::create($file);
             }
             return redirect(route('invoices'))->with('message','تم إضافة الفاتورة بنجاح');
@@ -73,11 +74,13 @@ class InvoiceController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function show(Invoice $invoice)
     {
-        //
+        $count = Invoice::where('created_by', $invoice->created_by)->count();
+        $products = Product::with('invoices')->where('created_by', $invoice->created_by)->count();
+        return view('invoices.invoice_details',['invoice'=>$invoice,'count'=>$count,'products'=>$products]);
     }
     /**
      * Show the form for editing the specified resource.

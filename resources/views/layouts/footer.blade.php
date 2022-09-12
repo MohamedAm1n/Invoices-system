@@ -1,4 +1,3 @@
-
         <!-- Back-to-top -->
         <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
         <!-- JQuery min js -->
@@ -9,11 +8,9 @@
         <script src="{{ asset('assets/plugins/ionicons/ionicons.js') }}"></script>
         <!-- Moment js -->
         <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>
-
         <!-- Rating js-->
         <script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
         <script src="{{ asset('assets/plugins/rating/jquery.barrating.js') }}"></script>
-
         <!--Internal  Perfect-scrollbar js -->
         <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
@@ -26,22 +23,6 @@
         <script src="{{ asset('assets/plugins/sidebar/sidebar-custom.js') }}"></script>
         <!-- Eva-icons js -->
         <script src="{{ asset('assets/js/eva-icons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
         <!--Internal  Datatable js -->
         <!-- Sticky js -->
         <script src="{{ asset('assets/js/sticky.js') }}"></script>
@@ -70,15 +51,29 @@
         <script src="{{ asset('assets/js/index.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
         <!--Internal  Datatable js -->
-    <script src="{{asset('assets/js/table-data.js')}}"></script>
     <!-- Internal Prism js-->
     <script src="{{asset('assets/plugins/prism/prism.js')}}"></script>
-
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
 @yield('js')
         <!-- Footer opened -->
 <div class="main-footer ht-40">
     <div class="container-fluid pd-t-0-f ht-100p">
-
     </div>
 </div>
 <!-- Footer closed -->

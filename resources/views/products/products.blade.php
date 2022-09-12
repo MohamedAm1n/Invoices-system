@@ -10,7 +10,6 @@
 							<h4 class="content-title mb-0 my-auto">الأعدادات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ المنتجات</span>
 						</div>
 					</div>
-					
 				</div>
 				<!-- breadcrumb -->
                 <x-flash-message/>
@@ -18,9 +17,7 @@
 @section('content')
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-xl-12">
-
             <div class="card">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
@@ -97,22 +94,18 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">اسم المنتج</label>
                                 <input type="text" class="form-control" id="Product_name" name="product_name" required>
-
                             </div>
-
                             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">القسم</label>
                             <select name="section_id" id="section_id" class="form-control" required>
                                 <option value="" selected disabled> --حدد القسم--</option>
-                                @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                @foreach ($sections as $sec)
+                                    <option value="{{ $sec->id }}">{{ $sec->section_name }}</option>
                                 @endforeach
                             </select>
-
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">ملاحظات</label>
                                 <textarea class="form-control" id="description" name="product_description" rows="3"></textarea>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">تاكيد</button>

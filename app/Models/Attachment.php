@@ -6,4 +6,8 @@ class Attachment extends Model
 {
     use HasFactory;
     protected $fillable = ['attach_name','invoice_id'];
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

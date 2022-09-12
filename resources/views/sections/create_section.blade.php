@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    إضافة قسم
+الأقسام
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -11,7 +11,6 @@
                     الأقسام</span>
             </div>
         </div>
-        
     </div>
     <x-flash-message/>
     <!-- breadcrumb -->
@@ -31,7 +30,6 @@
                             <i class="mdi mdi-dots-horizontal text-gray"></i>
                         </div>
                     </div>
-
                     <table class="table table-bordered" style="text-align:center">
                         <div class="table-responsive">
                                 <thead >
@@ -72,7 +70,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -81,7 +78,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal" id="modaldemo8">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
@@ -98,7 +94,6 @@
                             <input type="text" class="form-control" name="section_name" id="section_name"
                                 placeholder="إضافة اسم القسم">
                         </div>
-
                         <div class="form-group">
                             <label for="description">ملاحظات</label>
                             <input type="text" class="form-control" name="description"
@@ -114,7 +109,4 @@
         </div>
         <!-- row closed -->
     </div>
-
 @endsection
-
-

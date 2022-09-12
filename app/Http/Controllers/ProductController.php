@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Product;
 use App\Models\Section;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     /**
@@ -17,9 +15,8 @@ class ProductController extends Controller
     {
         $sections = Section::all();
         $products = Product::with('section')->get();
-        return view('products.products',['sections'=>$sections,'products'=>$products]);
+        return view('products.products',['products'=>$products,'sections'=>$sections]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +26,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +37,7 @@ class ProductController extends Controller
         // dd($request);
         $check = $request->validate([
             'product_name'=>'required|string',
-            'product_description'=>'required|string',
+            'product_description'=>'string|nullable',
             'section_id'=>'required'
         ]);
         $check['created_by'] = auth()->user()->name;
@@ -50,10 +46,7 @@ class ProductController extends Controller
         else
             Product::create($check);
         return redirect(route('products'))->with('message', 'successfully added!');
-
-        
     }
-
     /**
      * Display the specified resource.
      *
@@ -64,7 +57,6 @@ class ProductController extends Controller
     {
       //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -76,7 +68,6 @@ class ProductController extends Controller
         $sections = Section::all();
         return view('products.edit_product', ['product' => $product,'sections'=>$sections]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +88,6 @@ class ProductController extends Controller
             $product->update($edit_product);
         return redirect(route('products'))->with('message','تم التعديل بنجاح');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -106,6 +96,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $check = DB::table('invoices')->where('product_id', $product->id)->pluck('product_id')->first();
+        dd($check);
+        if($product->id == $check){
+            return back()->with('error', 'لا يمكن حذف المنتج لانه موجود في فاتورة  !');
+        }
+        else
         $product->delete();
         return redirect(route('products'))->with('message','تم حذف المنتج');
     }

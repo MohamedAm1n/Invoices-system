@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -20,11 +18,10 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->string('product_name');
             $table->string('created_by');
-            $table->text('product_description');
+            $table->text('product_description')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

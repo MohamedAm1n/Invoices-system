@@ -21,4 +21,8 @@ class Invoice extends Model
     {
         return $this->belongsTo(Section::class);
     }
+    public function attach()
+    {
+        return $this->belongsTo(Attachment::class);
+    }
 }

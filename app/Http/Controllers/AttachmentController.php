@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Attachment;
 use Illuminate\Http\Request;
-
 class AttachmentController extends Controller
 {
     /**
@@ -14,9 +11,7 @@ class AttachmentController extends Controller
      */
     public function index()
     {
-        //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +21,6 @@ class AttachmentController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +31,6 @@ class AttachmentController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,7 +41,6 @@ class AttachmentController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,7 +51,6 @@ class AttachmentController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -71,7 +62,6 @@ class AttachmentController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *

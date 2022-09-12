@@ -30,6 +30,8 @@ Route::middleware('auth')->prefix('erp/')->group(function(){
     Route::get('invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
     Route::post('invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
     Route::get('invoices/section/{id}', [InvoiceController::class, 'getProducts'])->name('invoices.section');
+    Route::get('invoices/show/{invoice}', [InvoiceController::class, 'show'])->name('invoice.detail');
+    // Route::get('invoices/edit/{invoice}', [InvoiceController::class , 'edit'])->name('invoice.edit');
     // Section Routes
     Route::get('section',[SectionController::class,'index'])->name('sections');
     Route::post('section/store',[SectionController::class,'store'])->name('section.store');

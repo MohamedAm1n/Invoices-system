@@ -2,23 +2,42 @@
 @section('title')
 	قائمة الفواتير
 @endsection
+@section('cs')
+	<link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+@endsection
 @section('page-header')
+				<!-- breadcrumb -->
+				<div class="breadcrumb-header justify-content-between">
+					<div class="my-auto">
+						<div class="d-flex">
+							<h4 class="content-title mb-0 my-auto">Tables</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Data Tables</span>
+						</div>
+					</div>
+				</div>
+				<!-- breadcrumb -->
 @endsection
 @section('content')
-				<div class="row">
+				<div class="row row-sm">
 					<div class="col-xl-12">
 						<div class="card">
 						<div class="card mg-b-20">
 							<div class="card-header pb-0">
-								<a href="{{ route('invoices.create') }}">
+								<div class="d-flex justify-content-between">
+											<a href="{{ route('invoices.create') }}">
                             <button type="button" class="btn.btn-lg btn-outline-primary">
                                     إضافة فاتورة
                                 </button>
                             </a>
+								</div>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="example1" class="table key-buttons text-md-nowrap">
+									<table id="example1" class="table key-buttons" data-page-length='10'>
 										<thead>
 											<tr>
 												<th class="border-bottom-0">م</th>
@@ -43,7 +62,7 @@
 											@foreach ($invoices as $invoice)
 											<tr>
 												<td style="text-align: center">{{ $counter++ }}</td>
-												<td style="text-align: center">{{ $invoice->invoice_number }}</td>
+												<td style="text-align: center"><a href="{{ route('invoice.detail',$invoice->id) }}">{{ $invoice->invoice_number }}</a></td>
 												<td style="text-align: center">{{ $invoice->invoice_date }}</td>
 												<td style="text-align: center">{{ $invoice->due_date }}</td>
 												<td style="text-align: center">{{ $invoice->product->product_name }}</td>
