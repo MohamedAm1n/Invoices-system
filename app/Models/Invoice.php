@@ -8,7 +8,7 @@ class Invoice extends Model
     protected $fillable = ['section_id','invoice_number','invoice_date',
     'due_date','product_id','amount_collection','amount_commission',
     'discount','value_vat','rate_vat','total','status_id',
-    'notes','payment_date','created_by','attach',
+    'notes','payment_date','created_by',
 ];
     protected $dates=['deleted_at'];
     public function status(){
@@ -21,7 +21,7 @@ class Invoice extends Model
     {
         return $this->belongsTo(Section::class);
     }
-    public function attach()
+    public function attachment()
     {
         return $this->belongsTo(Attachment::class);
     }

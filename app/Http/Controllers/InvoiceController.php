@@ -54,18 +54,17 @@ class InvoiceController extends Controller
             'total'=>'required',
             'notes'=>'string'
         ]);
-        // $val = $request->all();
         $val['created_by'] = auth()->user()->name;
         if (!$val)
             return redirect(route('invoices.create'))->with('message');
         else
             Invoice::create($val);
             // attach files
-            if($request->hasFile('attach_name') && $request->file('attach_name')->isValid()){
+            if($request->hasFile('file_name') && $request->file('file_name')->isValid()){
                 $file['invoice_id'] = Invoice::latest()->first()->id;   
-                $fileName= $request->file('attach_name')->getClientOriginalName();
-                $extension = $request->file('attach_name')->extension();
-                $file['attach_name']= $request->file('attach_name')->storePubliclyAs('files/'. $extension,$fileName ,'public');
+                $fileName= $request->file('file_name')->getClientOriginalName();
+                $extension = $request->file('file_name')->extension();
+                $file['file_name']= $request->file('file_name')->storePubliclyAs('files/'. $extension,$fileName ,'public');
             Attachment::create($file);
             }
             return redirect(route('invoices'))->with('message','تم إضافة الفاتورة بنجاح');

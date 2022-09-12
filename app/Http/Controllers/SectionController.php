@@ -39,12 +39,11 @@ class SectionController extends Controller
     {
         $add_section = $request->validate([
             'section_name'=>'required|string|min:3|unique:sections',
-            'description'=>'required|string',
+            'description'=>'nullable |string',
         ],
         [
             'section_name.required'=>'برجاء ادخال اسم القسم',
             'section_name.unique'=>'اسم القسم مسجل مسبقاً',
-            'description.required'=>'برجاء ادخال الوصف الخاص بالقسم'
         ]
         );
             $add_section['created_by'] = auth()->user()->name;
@@ -84,7 +83,7 @@ class SectionController extends Controller
     {
         $edit_section = $request->validate([
             'section_name'=>'required|string|min:3|unique:sections,section_name,'.$section->id,
-            'description'=>'required|string',
+            'description'=>'string|nullable',
         ],
         [
             'section_name.required'=>'برجاء ادخال اسم القسم',

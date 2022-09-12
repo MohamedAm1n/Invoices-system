@@ -21,10 +21,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreignId('status_id')->constrained()
                 ->onUpdate('cascade')
-                ->onDelete('cascade');  
-            $table->foreignId('attachment_id')->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');    
+                ->onDelete('cascade');   
             $table->string('invoice_number');
             $table->string('created_by');
             $table->string('discount');

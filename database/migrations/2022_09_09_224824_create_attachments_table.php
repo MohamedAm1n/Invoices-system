@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('invoice_id')->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('file_name')->nullable();
             $table->timestamps();
         });

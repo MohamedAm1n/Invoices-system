@@ -22,12 +22,22 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                                <a class="modal-effect btn  btn-block" data-effect="effect-scale"
+                                    data-toggle="modal" data-target="#exampleModal" href="#modaldemo8">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                   Add ptoduct
+                                    </button>
+                                </a>
+                        </div>
+                    </div>
+                    {{-- <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
                             <div class="col-sm-6 col-md-4 col-xl-3">
                                 <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
                                     data-toggle="modal" data-target="#exampleModal" href="#modaldemo8">إضافة منتج</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table text-md-nowrap" style="text-align:center">

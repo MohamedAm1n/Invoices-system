@@ -23,11 +23,12 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <div class="col-sm-6 col-md-4 col-xl-3">
-                                <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
-                                    data-toggle="modal" href="#modaldemo8">إضافة قسم</a>
-                            </div>
-                            <i class="mdi mdi-dots-horizontal text-gray"></i>
+                                <a class="modal-effect btn  btn-block" data-effect="effect-scale"
+                                    data-toggle="modal" href="#modaldemo8">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        Add Section
+                                    </button>
+                                </a>
                         </div>
                     </div>
                     <table class="table table-bordered" style="text-align:center">

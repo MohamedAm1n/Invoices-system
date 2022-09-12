@@ -135,7 +135,7 @@
                                 <h5 class="card-title">المرفقات</h5>
                             </div>
                             <div class="col-sm-12 col-md-12">
-                                <input type="file" name="attach_name" class="form-control">
+                                <input type="file" name="file_name" class="form-control">
                             </div><br>
                         </div>
                         <br>

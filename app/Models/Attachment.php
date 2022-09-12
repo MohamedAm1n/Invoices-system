@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     use HasFactory;
-    protected $fillable = ['attach_name','invoice_id'];
+    protected $fillable = ['file_name','invoice_id'];
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
