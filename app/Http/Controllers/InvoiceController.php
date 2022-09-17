@@ -77,9 +77,10 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
+        $attach = Attachment::where('invoice_id', $invoice->id)->first();
         $count = Invoice::where('created_by', $invoice->created_by)->count();
         $products = Product::with('invoices')->where('created_by', $invoice->created_by)->count();
-        return view('invoices.invoice_details',['invoice'=>$invoice,'count'=>$count,'products'=>$products]);
+        return view('invoices.invoice_details',['invoice'=>$invoice,'attach'=>$attach,'count'=>$count,'products'=>$products]);
     }
     /**
      * Show the form for editing the specified resource.

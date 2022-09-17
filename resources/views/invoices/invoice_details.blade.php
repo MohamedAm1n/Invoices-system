@@ -197,7 +197,7 @@
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1 font-weight-bold">{{ $invoice->attach->invoice_id }}</h4>
+										<h4 class="mb-1 font-weight-bold">{{ $attach->file_name }}</h4>
 									</div>
 									<div class="card-chart bg-primary-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-group-outline text-primary tx-24"></i>
