@@ -38,7 +38,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        
         $val = $request->validate([
             'section_id'=>'required',
             'product_id'=>'required',
